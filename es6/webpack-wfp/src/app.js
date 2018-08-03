@@ -1,12 +1,17 @@
-"use strict";
+'use strict';
 
-/* import util1 from './util1.js'
-import { fn1, fn2 } from './util2.js'
+var _util = require('./util1.js');
 
-console.log(util1)
-fn1()
-fn2() */
+var _util2 = _interopRequireDefault(_util);
 
-[1, 2, 3].map(function (item) {
-    console.log(item + 1);
-});
+var _util3 = require('./util2.js');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+console.log(_util2.default);
+(0, _util3.fn1)();
+(0, _util3.fn2)();
+
+/* [1, 2, 3].map(item => {
+    console.log(item + 1)
+}) */
