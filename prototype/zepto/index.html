@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>zepto</title>
+</head>
+<body>
+
+    <p class="haha">jquery test 1</p>
+    <p class="haha">jquery test 2</p>
+    <p class="haha">jquery test 3</p>
+
+    <div id="div1">
+        <p>jquery test in div</p>
+    </div>
+
+    <script src="./my-zepto.js"></script>
+    <script>
+        var $p = $('p');
+        $p.css();
+
+        var $div1 = $('#div1')
+        $div1.html();
+    </script>
+    
+</body>
+</html>

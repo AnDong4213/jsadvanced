@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>jQuery</title>
+</head>
+<body>
+
+    <p>jquery test 1</p>
+    <p>jquery test 2</p>
+    <p>jquery test 3</p>
+
+    <div id="div1">
+        <p>jquery test in div</p>
+    </div>
+
+    <script src="./jquery.js"></script>
+    <script>
+        var $p = $('p');
+        $p.css('fontSize', '40px');
+        console.log($p.html());
+
+        var $div1 = $('#div1')
+        $div1.css('color', 'blue');
+        console.log($div1.html())
+    </script>
+    
+</body>
+</html>
