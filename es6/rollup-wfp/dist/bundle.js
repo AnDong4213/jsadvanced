@@ -20,8 +20,8 @@
   fn1();
   fn2();
 
-  var src = 'http://d.ifengimg.com/mw978_mh598/p2.ifengimg.com/2018_33/50CFB263C0E899B3B6ABA22C4B53E2A9CAB9D7CA_w1024_h985.jpg';
-  var src2 = 'http://d.ifengimg.com/mw978_mh598/p2.ifengimg.com/2018_33/50CFB263C0E899B3B6ABA22C4B53E2A9CAB9D7CA_w1024_h985.jpg';
+  var src = 'https://static.firefoxchina.cn/img/201808/8_5b74cf38ec1990.jpg';
+  var src2 = 'https://static.firefoxchina.cn/img/201808/8_5b74cf38ec1990.jpg';
   function loadImg(src, callback, fail) {
       var img = document.createElement('img');
       img.onload = function () {
@@ -34,7 +34,7 @@
       document.body.appendChild(img);
   }
   loadImg(src, function (img) {
-      console.log(img.width);
+      console.log('aa', img.width);
   }, function () {
       console.log('failed');
   });
@@ -52,11 +52,15 @@
           document.body.appendChild(img);
       });
   }
-
   loadImg2(src2).then(function (img) {
-      console.log(img.height);
+      console.log('bb', img.height);
+      return img;
   }, function (err) {
       console.log(err);
+  }).then(function (img) {
+      console.log('cc', img.width);
+  }).catch(function (error) {
+      console.log(error);
   });
 
   /* var obj = {a: 100, b: 222, c: 333};
@@ -66,9 +70,9 @@
   console.log(item) */ // 返回最后一个 c
 
   var obj = { a: 100, b: 222, c: 333 };
-  for (var _item in obj) {
-      console.log(_item);
+  for (var item in obj) {
+      console.log(item);
   }
-  console.log(item);
+  // console.log(item);  // item is not defined
 
 })));

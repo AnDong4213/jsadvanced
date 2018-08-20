@@ -6,8 +6,8 @@ fn1()
 fn2()
 
 
-let src = 'http://d.ifengimg.com/mw978_mh598/p2.ifengimg.com/2018_33/50CFB263C0E899B3B6ABA22C4B53E2A9CAB9D7CA_w1024_h985.jpg';
-let src2 = 'http://d.ifengimg.com/mw978_mh598/p2.ifengimg.com/2018_33/50CFB263C0E899B3B6ABA22C4B53E2A9CAB9D7CA_w1024_h985.jpg';
+let src = 'https://static.firefoxchina.cn/img/201808/8_5b74cf38ec1990.jpg';
+let src2 = 'https://static.firefoxchina.cn/img/201808/8_5b74cf38ec1990.jpg';
 function loadImg(src, callback, fail) {
     let img = document.createElement('img');
     img.onload = function() {
@@ -20,7 +20,7 @@ function loadImg(src, callback, fail) {
     document.body.appendChild(img)
 }
 loadImg(src, function(img) {
-    console.log(img.width)
+    console.log('aa', img.width)
 }, function() {
     console.log('failed')
 })
@@ -38,11 +38,17 @@ function loadImg2(src) {
         document.body.appendChild(img)
     })
 }
-
 loadImg2(src2).then((img) => {
-    console.log(img.height)
+    console.log('bb', img.height);
+    return img
 }, (err) => {
     console.log(err)
+})
+.then(function(img) {
+    console.log('cc', img.width)
+})
+.catch(error => {
+    console.log(error)
 })
 
 /* var obj = {a: 100, b: 222, c: 333};

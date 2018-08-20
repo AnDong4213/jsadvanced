@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Async</title>
+</head>
+<body>
+
+    <script src="https://cdn.bootcss.com/jquery/3.2.0/jquery.min.js"></script>
+
+    <script>
+        /* var ajax = $.ajax({
+            url: './data.json',
+            success: function(data) {
+                console.log(data)
+                console.log('success 1')
+                console.log('success 2')
+                console.log('success 3')
+            },
+            error: function() {
+                console.log('error')
+            }
+        });
+        console.log(ajax) */
+
+        /* var ajax = $.ajax('./data1.json');  // 如果数据接口写错的话，都是error   err a err b err c
+        ajax
+            .done(function() {
+                console.log('suc a')
+            })
+            .fail(function() {
+                console.log('err a')
+            })
+            .done(function() {
+                console.log('suc b')
+            })
+            .fail(function() {
+                console.log('err b')
+            })
+            .done(function() {
+                console.log('suc c')
+            })
+            .fail(function() {
+                console.log('err c')
+            })
+            .done(function() {
+                console.log('suc d')
+            }) */
+
+            /* var ajax = $.ajax('./data1.json'); // 如果数据接口写错的话，第一个是err aa ，其他的suc bb suc cc
+            ajax
+                .then(function() {
+                    console.log('suc aa')
+                }, function() {
+                    console.log('err aa')
+                })
+                .then(function() {
+                    console.log('suc bb')
+                }, function() {
+                    console.log('err bb')
+                })
+                .then(function() {
+                    console.log('suc cc')
+                }, function() {
+                    console.log('err cc')
+                }) */
+
+            
+        /* function waitHandle() {
+            var dtd = $.Deferred();
+
+            var wait = function(dtd) {
+                var task = function() {
+                    console.log('执行完成...')
+                    dtd.resolve('成功...');
+                    // 失败
+                    // dtd.reject();
+                }
+                setTimeout(task, 1000)
+                return dtd
+            }
+            return wait(dtd)
+        }
+        var w = waitHandle()
+        w.then(function(ha) {
+            console.log(ha)  // 成功...
+            console.log('suc aa')
+        }, function() {
+            console.log('err aa')
+        })
+        .then(function(ha) {
+            console.log(ha) // undefined
+            console.log('suc bb')
+        }, function() {
+            console.log('err bb')
+        })
+        .then(function(ha) {
+            console.log(ha) // undefined
+            console.log('suc cc')
+        }, function() {
+            console.log('err cc')
+        }) */
+        /* w.then(function(ha) {
+            console.log(ha) // 成功...
+            console.log('suc aa')
+        }, function() {
+            console.log('err aa')
+        })
+        w.then(function(ha) {
+            console.log(ha) // 成功...
+            console.log('suc bb')
+        }, function() {
+            console.log('err bb')
+        })
+        w.then(function(ha) {
+            console.log(ha) // 成功...
+            console.log('suc cc')
+        }, function() {
+            console.log('err cc')
+        }) */
+
+
+        function waitHandle() {
+            var dtd = $.Deferred();
+            var wait = function(dtd) {
+                var task = function() {
+                    console.log('执行完成...')
+                    dtd.resolve('成功...');
+
+                    // 失败
+                    // dtd.reject();
+                }
+                setTimeout(task, 1000)
+                return dtd.promise()
+            }
+            return wait(dtd)
+        }
+        var w = waitHandle();  // promise 对象...
+        // w.reject();  // w.reject is not a function
+        $.when(w).then(function(ha) {
+            console.log(ha);
+            console.log('OK 1')
+        }, function() {
+            console.log('Err 1')
+        })
+
+    </script>
+    
+</body>
+</html>
