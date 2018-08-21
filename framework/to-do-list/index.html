@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>jQuery-toDoList</title>
+</head>
+<body>
+
+    <div>
+        <input type="text" name="" id="txt-title">
+        <button id="btn-submit">submit</button>
+    </div>
+    <div>
+        <ul id="ul-list">
+
+        </ul>
+    </div>
+
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+    <script>
+        var $txtTitle = $('#txt-title'), $btnSubmit = $('#btn-submit'), $ulList = $('#ul-list');
+        $btnSubmit.click(function() {
+            var txt = $txtTitle.val();
+            // var $li = $('<li>');
+            // $li.text(txt);
+            if (!txt) {
+                return
+            }
+            var $li = $('<li>' + txt + '</li>');
+            $ulList.append($li)
+            $txtTitle.val('')
+        })
+
+        /* var txtTitle = document.getElementById('txt-title'),
+            btnSubmit = document.getElementById('btn-submit'),
+            ulList = document.getElementById('ul-list');
+
+        btnSubmit.addEventListener('click', function() {
+            var txt = txtTitle.value;
+            if (!txt) {
+                return
+            }
+            var li = document.createElement('li');
+            li.textContent = txt;
+            ulList.appendChild(li);
+            txtTitle.value = ''
+        }) */
+    </script>
+    
+</body>
+</html>

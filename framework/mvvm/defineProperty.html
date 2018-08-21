@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>defineProperty</title>
+</head>
+<body>
+    
+    <script>
+
+        /* let o = {}, bValue = 'HH';
+        Object.defineProperty(o, 'b', {
+            get() {
+				console.log('获取的时候监听到了哦...')
+                return bValue
+            },
+            set(newValue) {
+				console.log('重新赋值监听到了哦...')
+                bValue = newValue;
+            },
+            enumerable: true,
+            configurable: true
+        })
+		// console.log(o.b)  // 获取的时候监听到了哦... HH
+		o.b = 'KKKKK';  // 重新赋值监听到了哦...
+        // console.log(o.b) */
+
+
+        var vm = {}, data = {name: 'andong', age: 20};
+
+        var key, value;
+        for (key in data) {
+            (function(key) {
+                Object.defineProperty(vm, key, {
+                    get() {
+                        console.log('get到啦...')
+                        return data[key]
+                    },
+                    set(newVal) {
+                        console.log('set完成咯......')
+                        data[key] = newVal
+                    }
+                })
+            })(key)
+        }
+        
+    </script>
+
+</body>
+</html>
