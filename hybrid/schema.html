@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>schema协议</title>
+</head>
+<body>
+    <button id="btn1">扫一扫</button>
+    <button id="btn2">分享</button>
+    <script>
+        /* function haha() {
+            console.log('HH') 
+        } */
+        /* window['haha'] = function() {
+            console.log('KK')
+        }
+        haha() */
+        var localHandler = function(data){
+            console.log('我是本地函数，可以被跨域的remote.js文件调用，远程js带来的数据是：' + data.result);
+        };
+
+        document.getElementById('btn1').addEventListener('click', function () {
+            // invokeScan()
+            window.invoke.scan({}, function () {})
+        })
+        document.getElementById('btn2').addEventListener('click', function () {
+            window.invoke.share({
+                title: 'xxx',
+                content: 'yyy'
+            }, function (result) {
+                if (result.errno === 0) {
+                    alert('分享成功')
+                } else {
+                    alert(result.message)
+                }
+            })
+        })
+    </script>
+    <script src="./remote.js"></script>
+</body>
+</html>

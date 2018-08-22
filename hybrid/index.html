@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>iframe</title>
+    <style>
+        h2{color: green;}
+    </style>
+    <script>
+        function changeStyle(){
+            var x=document.getElementById("myframe");
+            var y=(x.contentWindow || x.contentDocument);
+            // if (y.document) y=y.document;
+            // y.body.style.backgroundColor="#0000ff";
+            console.log(y.document.style.height)
+        }
+    </script>
+</head>
+<body>
+    <h2>index.html</h2>
+    <!-- frameborder="0" -->
+    <!-- <iframe id="iframe" onload="this.height = this.contentDocument.documentElement.scrollHeight + 'px'" src="./iframe.html"></iframe> -->
+    
+    <iframe id="myframe" src="./iframe.html"></iframe>
+    <br><br>
+    <input type="button" onclick="changeStyle()" value="修改背景颜色">
+</body>
+</html>
