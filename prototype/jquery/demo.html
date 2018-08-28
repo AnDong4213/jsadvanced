@@ -20,14 +20,17 @@
     <script src="./jquery.js"></script>
 
     <script>
+        console.log($.fn === $.prototype); // true
+        // console.log('ajax' in $.fn); // false
+        // console.log('hasClass' in $.fn); // true
         $.fn.getNodeName = function() {
             console.log(this[0].nodeName)
         }
-    </script>
-    <script>
+
         var $p = $('p');
         $p.getNodeName()
-       console.log($p)
+        console.log($p)
+        
     </script>
     
 </body>
