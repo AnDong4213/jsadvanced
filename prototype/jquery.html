@@ -5,12 +5,76 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>jquery</title>
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.js"></script>
 </head>
 <body>
-
+    <table id="myTable" border="1">  
+        <tr>  
+            <td id="add">增加</td>  
+            <td id="delete">删除</td>
+            <td id="modfiy">修改</td>
+            <td id="select">查找</td>
+        </tr>  
+    </table>
+    <div id="myDiv" style="margin-top:100px;background-color: lightblue;width: 0;height: 20px;line-height: 20px;">0%</div>
+    <button id="btn">run</button>
     <script>
+        let timer, btn = document.getElementById('btn'), myDiv = document.getElementById('myDiv');
+        btn.addEventListener('click', function() {
+            myDiv.style.width = '0';
+            cancelAnimationFrame(timer);
+            timer = requestAnimationFrame(function fn() {
+                if (parseInt(myDiv.style.width) < 500) {
+                    myDiv.style.width = parseInt(myDiv.style.width) + 5 + 'px';
+                    myDiv.innerHTML =  parseInt(myDiv.style.width) / 5 + '%';
+                    timer = requestAnimationFrame(fn);
+                } else {
+                    cancelAnimationFrame(timer)
+                }
+            })
+        })
+
+        /* window.onload = function() {
+            let hh = document.getElementById('myTable');
+            hh.addEventListener('click', function(e) {
+                var target = e.target || e.srcElement;
+                // target.nodeName.toLowerCase() == 'td' ? console.log(target.id) : (target.style.background = 'red');
+                if(target.nodeName.toLocaleLowerCase() == 'td'){  
+                    switch(target.id){  
+                        case 'add' :  
+                            alert('添加');  
+                            break;  
+                        case 'delete' :  
+                            alert('删除');  
+                            break;  
+                        case 'modfiy' :  
+                            alert('移动');  
+                            break;  
+                        case 'select' :  
+                            alert('选择');  
+                            break;  
+                    }  
+                }
+            })
+        } */
+
+        /* $('#myTable').click(function(e) {
+            let $clicked = $(e.target);
+            // console.log(e.target)
+            e.target.nodeName.toLowerCase() == 'td' ? console.log($clicked.html())  : $clicked.html(); 
+        }) */
+
+         // jQuery1.7的on绑定方法,替代了以往的bind、live等方法，内部自动含有事件委托机制  
+        // $(selector).on(event,childSelector,data,function,map)   on方法的语法  
+        // $(selector).on(event,childSelector,function(){})        on方法语法，绑定在父元素上 事件，子选择器，回调函数  
+        $('#myTable').on('click', 'td', function() {
+            console.log($(this).html())
+        })
+
+
+
         /*
-        从核心功能来看，jQuery 仅仅做了一件事：查询。从设计层面来看，可以将jQuery提供方法分为两大类：静态方法和实例方法。静态方法就是直接通过$访问的方法，这些方法一般不对dom元素操作，而是提供了一些常用的工具 $.ajax,除此之外，jQuery还提供了extend方法实现对自身的扩展的机制; 而实例方法是用来对jQuery查询的DOM元素进行操作; jQuery操作dom元素时会构建一个 jQuery 对象，这个对象以数组的方法存储查询出的所有DOM元素；
+        从核心功能来看，jQuery 仅仅做了一件事：查询。从设计层面来看，可以将jQuery提供方法分为两大类：静态方法和实例方法。静态方法就是直接通过$访问的方法，这些方法一般不对dom元素操作，而是提供了一些常用的工具 $.ajax,除此之外，jQuery还提供了extend方法实现对自身的扩展的机制; 而实例方法是用来对jQuery查询的DOM元素进行操作; jQuery操作dom元素时会构建一个 jQuery 对象，这个对象以 数组的形式 存储查询出所有DOM元素；
         */
 
         /* jQuery 每执行一次查询就会创建一个jQuery对象，而在同一个应用程序中，所有 jQuery 对象都会共享同一个 jQuery 原型对象。因此，jQuery对象不仅包含了 DOM 查询结果集，还继承了 jQuery 原型对象上的操作方法。这样，你就可以在查询后直接调用方法来操作这些DOM 元素了。这就是 jQuery 的核心架构设计 */
@@ -18,7 +82,7 @@
         /*
         jQuery 的缺陷
 
-通过对jQuery的核心架构分析，我们会发现，每执行一次查询，jQuery就要在内存中构建一个复杂的 jQuery 对象，虽然说每个 jQuery 对象都共享同一个 jQuery 原型，但 jQuery 的查询过程远比你想象的要复杂，它既要考虑各种不同的匹配标识，同时又要考虑不同浏览器的兼容性。因此，如果你只是对 DOM 做一些简单的操作，建议使用原生方法 querySelector 替代 jQuery，不过在使用原生方法时，对于不同的应用场景你可能要做一些兼容性的工作，要学会取舍，不要过度依赖 jQuery！*/
+通过对jQuery的核心架构分析，我们会发现，每执行一次查询，jQuery就要在内存中构建一个复杂的 jQuery 对象，虽然说每个 jQuery 对象都共享同一个 jQuery 原型，但 jQuery 的查询过程远比你想象的要复杂，它既要考虑各种不同的匹配标识，同时又要考虑不同浏览器的兼容性。因此，如果你只是对 DOM 做一些简单的操作，建议使用原生方法 querySelector 替代 jQuery，不过在使用原生方法时，对于不同的应用场景你可能要做一些兼容性的工作，要学会取舍，不要过度依赖 jQuery！*/ 
     </script>
     
 </body>
